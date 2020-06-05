@@ -1,0 +1,230 @@
+
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-image: url("download14.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+           
+
+        }
+
+        #container {
+            width: 80%;
+            margin: 82.5px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(28, 40, 51, 0.3);
+            
+
+        }
+
+        #taskform {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+
+        }
+
+        #data {
+
+            width: 50%;
+            margin: 100px 25%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(28, 40, 51, 0.4);
+            color: white;
+            font-size: 20px;
+
+
+        }
+
+        #data1,
+        #data2 {
+
+            padding: 20px;
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0, 0.3);
+
+        }
+
+        #bottombar,
+        #navbar {
+            width: 100%;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(28, 40, 51, 0.3);;
+
+        }
+
+        #name {
+
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 20px;
+
+        }
+
+        #nam {
+
+            margin-bottom: 15px;
+            font-weight: lighter;
+            font-size: 18px;
+        }
+
+        #top,
+        #bottom {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        @media only screen and (max-width:1024px){
+            #navbar, #bottombar{
+                height:180px;
+            }
+
+            #top, #bottom{
+                font-size: 40px;
+            }
+
+            #container{
+                margin:330px 10%;
+            }
+
+            input{
+                width:300px;
+                padding:10px;
+
+            }
+
+            #nam{
+                font-size: 15px;
+            }
+
+            #data{
+                width:60%;
+                margin:100px 20%;
+            }
+        }
+
+        @media only screen and (max-width:768px){
+            #container{
+                margin:155px 10%;
+            }
+
+            #data{
+                width:80%;
+            }
+        }
+
+        @media only screen and (max-width:375px){
+            #navbar, #bottombar{
+                height:100px;
+            }
+
+            #top, #bottom{
+                font-size: 20px;
+            }
+
+            input{
+                width:250px;
+                padding:10px;
+
+            }
+
+            #container{
+                margin:130px 10%;
+            }
+
+            #name{
+                font-size: 15px;
+            }
+
+            #nam{
+                font-size: 10px;
+            }
+
+            #data1,
+        #data2 {
+
+            padding: 2px;
+            margin: 0px;
+        }
+
+        }
+
+        @media only screen and (max-width:414px){
+            #navbar, #bottombar{
+                height:100px;
+            }
+
+            #top, #bottom{
+                font-size: 20px;
+            }
+
+            input{
+                width:220px;
+                padding:10px;
+
+            }
+
+            #container{
+                margin:130px 10%;
+            }
+
+            #name{
+                font-size: 15px;
+            }
+
+            #nam{
+                font-size: 10px;
+            }
+
+            #data1,
+        #data2 {
+
+            padding: 2px;
+            margin: 0px;
+        }
+        }
+
+        @media only screen and (max-width:320px){
+            #taskform{
+                width:100px;
+            }
+
+            #data{
+                width:100%;
+                
+            }
+        }
+
+        @media only screen and (max-width:411px){
+            #container{
+                margin:135px 10%;
+            } 
+
+        }
+
+        @media only screen and (max-width:360px){
+            #data{
+                width:90%;
+                
+            }
+        }

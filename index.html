@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Covid-19 Page</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cssindex.css">
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="top">COVID-19 UPDATES</div>
+    </div>
+
+    <div id="container">
+        <div>
+            <form id="taskform">
+                <input id="countryname" type="text" placeholder="Enter Country Name">
+                <input id="submitbutton" type="button" value="Submit">
+            </form>
+        </div>
+        <div id="data">
+
+
+        </div>
+    </div>
+
+    <div id="bottombar">
+        <div id="bottom">All rights are reserved by TYP.</div>
+    </div>
+
+    <script>
+
+        var data = [];
+        var countryname = document.getElementById("countryname");
+        var submitbutton = document.getElementById("submitbutton");
+        var dataele = document.getElementById("data");
+
+
+
+        submitbutton.addEventListener('click', function (e) {
+            var country = countryname.value;
+
+            var rawurl = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country=' + country;
+            var url = rawurl;
+
+            var promisedresponse = fetch(url);
+            promisedresponse.then(response => {
+                if (response.status == 200) {
+                    var promisedata = response.json();
+                    promisedata.then(serverdata => {
+                        var dataserver = serverdata;
+                        data = dataserver;
+                        
+                        renderlist();
+
+
+
+                    });
+                }
+
+
+            });
+        });
+
+        function renderlist() {
+            let confirmedCases = data.latest.confirmed;
+            let deaths = data.latest.deaths;
+            let deathpercent = ((Number(deaths) / Number(confirmedCases)) * 100).toLocaleString("en", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+            var result = "";
+
+            for (var i = 0; i < 1; i++) {
+                var html = '<div id="data1">\
+                <div id="name">Country</div>\
+                <div id="nam">'+ data.locations[0].country + '</div>\
+                <div id="name">Population</div>\
+                <div id="nam">'+ data.locations[0].country_population + '</div>\
+                <div id="name">Last Updated</div>\
+                <div id="nam">'+ data.locations[0].last_updated + '</div>\
+            </div>\
+            <div id="data2">\
+                <div id="name">Cases</div>\
+                <div id="nam">'+ data.latest.confirmed + '</div>\
+                <div id="name">Deaths</div>\
+                <div id="nam">'+ data.latest.deaths + '</div>\
+                <div id="name">% of Deaths</div>\
+                <div id="nam">'+ deathpercent + '</div>\
+            </div>';
+
+                result += html;
+            }
+            dataele.innerHTML = result;
+        };
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
