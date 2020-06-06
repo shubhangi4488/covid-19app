@@ -43,7 +43,7 @@
         submitbutton.addEventListener('click', function (e) {
             var country = countryname.value;
 
-            var rawurl = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country=' + country;
+            var rawurl = 'https://api.covid19api.com/summary';
             var url = rawurl;
 
             var promisedresponse = fetch(url);
@@ -53,7 +53,7 @@
                     promisedata.then(serverdata => {
                         var dataserver = serverdata;
                         data = dataserver;
-                        
+                        console.log(data);
                         renderlist();
 
 
@@ -66,27 +66,42 @@
         });
 
         function renderlist() {
-            let confirmedCases = data.latest.confirmed;
-            let deaths = data.latest.deaths;
-            let deathpercent = ((Number(deaths) / Number(confirmedCases)) * 100).toLocaleString("en", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+           
             var result = "";
+
+            for(var i = 0; i<data.Countries.length; i++){
+                if(data.Countries[i].Country == countryname.value || data.Countries[i].Slug == countryname.value){
+                    var country = data.Countries[i].Country;
+                    var newconfirmed = data.Countries[i].NewConfirmed;
+                    var newdeaths = data.Countries[i].NewDeaths;
+                    var newrecovered = data.Countries[i].NewRecovered;
+                    var totalconfirmed = data.Countries[i].TotalConfirmed;
+                    var totaldeaths = data.Countries[i].TotalDeaths;
+                    var totalrecovered = data.Countries[i].TotalRecovered;
+                    var deathpercent = ((Number(totaldeaths) / Number(totalconfirmed)) * 100).toLocaleString("en", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+                }
+            }
 
             for (var i = 0; i < 1; i++) {
                 var html = '<div id="data1">\
                 <div id="name">Country</div>\
-                <div id="nam">'+ data.locations[0].country + '</div>\
-                <div id="name">Population</div>\
-                <div id="nam">'+ data.locations[0].country_population + '</div>\
-                <div id="name">Last Updated</div>\
-                <div id="nam">'+ data.locations[0].last_updated + '</div>\
+                <div id="nam">'+ country + '</div>\
+                <div id="name">New Confirmed</div>\
+                <div id="nam">'+ newconfirmed + '</div>\
+                <div id="name">New Deaths</div>\
+                <div id="nam">'+ newdeaths + '</div>\
+                <div id="name">New Recovered</div>\
+                <div id="nam">'+ newrecovered + '</div>\
             </div>\
             <div id="data2">\
                 <div id="name">Cases</div>\
-                <div id="nam">'+ data.latest.confirmed + '</div>\
+                <div id="nam">'+ totalconfirmed + '</div>\
                 <div id="name">Deaths</div>\
-                <div id="nam">'+ data.latest.deaths + '</div>\
+                <div id="nam">'+ totaldeaths + '</div>\
                 <div id="name">% of Deaths</div>\
                 <div id="nam">'+ deathpercent + '</div>\
+                <div id="name">Total Recovered</div>\
+                <div id="nam">'+ totalrecovered + '</div>\
             </div>';
 
                 result += html;
